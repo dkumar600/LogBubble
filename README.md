@@ -26,16 +26,6 @@ npm link
 npm link logbubble
 ```
 
-### Using file reference
-
-```json
-{
-  "dependencies": {
-    "logbubble": "file:../../LogBubble"
-  }
-}
-```
-
 ## Usage
 
 ### Auto-initialization (Recommended)

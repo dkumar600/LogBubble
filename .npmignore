@@ -1,0 +1,25 @@
+# Source files (TypeScript sources are in files array)
+*.ts
+!*.d.ts
+
+# Development files
+tsconfig.json
+.gitignore
+.npmignore
+.editorconfig
+
+# IDE
+.vscode/
+.idea/
+
+# Tests
+*.test.js
+*.spec.js
+__tests__/
+
+# Documentation sources
+*.md
+!README.md
+
+# Misc
+.DS_Store

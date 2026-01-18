@@ -1,0 +1,37 @@
+{
+  "name": "logbubble",
+  "version": "0.1.0",
+  "description": "LogBubble: Web floating logger for network and console logs",
+  "main": "dist/init.js",
+  "types": "dist/init.d.ts",
+  "files": [
+    "dist",
+    "core",
+    "ui",
+    "init.ts",
+    "auto.ts"
+  ],
+  "sideEffects": [
+    "./auto.ts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "logbubble",
+    "network",
+    "console",
+    "logger",
+    "web",
+    "devtools",
+    "ui",
+    "bubble"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,6 +1,12 @@
 # LogBubble 🫧
 
+[![npm version](https://badge.fury.io/js/logbubble.svg)](https://badge.fury.io/js/logbubble)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/badge/GitHub-LogBubble-blue)](https://github.com/dkumar600/LogBubble)
+
 A lightweight, floating log viewer for monitoring network requests and console logs in web applications. Perfect for debugging web apps, Capacitor apps, and Progressive Web Apps (PWAs) directly on mobile devices or in production-like environments.
+
+[View on npm](https://www.npmjs.com/package/logbubble)
 
 ## Features
 
@@ -14,16 +20,16 @@ A lightweight, floating log viewer for monitoring network requests and console l
 
 ## Installation
 
-### Using npm link (Local Development)
+Install LogBubble from npm:
 
 ```bash
-# In LogBubble directory
-npm install
-npm run build
-npm link
+npm install logbubble
+```
 
-# In your project directory
-npm link logbubble
+Or with yarn:
+
+```bash
+yarn add logbubble
 ```
 
 ## Usage
@@ -196,14 +202,43 @@ LogBubble works in all modern browsers and WebView environments:
 - Logs are stored in memory only (cleared on page refresh)
 - Maximum 500 logs retained (older logs are automatically removed)
 
+## Troubleshooting
+
+### UI not appearing
+
+Ensure LogBubble is imported at the entry point of your application (before React renders or before any other scripts run).
+
+### Duplicate logs
+
+If you see duplicate logs, check that `initNetworkLogger()` is not being called multiple times. LogBubble has a guard against this, but if you call it manually AND import the auto-init module, it may appear twice.
+
+### Not capturing network requests
+
+Make sure your app is using native `fetch` or `XMLHttpRequest` APIs. Some custom HTTP clients may not be automatically patched.
+
+## Support
+
+For issues, feature requests, or questions, please open an issue on [GitHub](https://github.com/dkumar600/LogBubble/issues).
+
 ## License
 
 MIT
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests.
+Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/dkumar600/LogBubble).
+
+### Getting Started with Development
+
+If you want to contribute to LogBubble:
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Build the project: `npm run build`
+4. Watch for changes: `npm run dev`
 
 ---
 
 Built with ❤️ for developers who need better mobile debugging tools.
+
+**Made by [Deepak Kumar](https://github.com/dkumar600)**

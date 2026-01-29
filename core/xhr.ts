@@ -1,7 +1,7 @@
-// xhr.ts
-// Patches XMLHttpRequest to log network requests in dev mode (browser/WebView only)
-
 import { logStore } from "../ui/logStore";
+
+const XHR_PATCH_FLAG = "__LOGBUBBLE_XHR_PATCHED__";
+const XHR_PATCH_PROP = "__logbubbleXhrPatched";
 
 export function patchXHR(logFn: (msg: string) => void) {
   if (
@@ -9,7 +9,14 @@ export function patchXHR(logFn: (msg: string) => void) {
     typeof window.XMLHttpRequest !== "function"
   )
     return;
+
+  const g = globalThis as any;
+  if (g[XHR_PATCH_FLAG]) return;
+  if ((window.XMLHttpRequest as any)[XHR_PATCH_PROP]) return;
+  g[XHR_PATCH_FLAG] = true;
+
   const OriginalXHR = window.XMLHttpRequest;
+  (OriginalXHR as any)[XHR_PATCH_PROP] = true;
   function PatchedXHR(this: XMLHttpRequest) {
     const xhr = new OriginalXHR();
     let url = "";
@@ -26,6 +33,7 @@ export function patchXHR(logFn: (msg: string) => void) {
       start = Date.now();
     });
     xhr.addEventListener("loadend", () => {
+      if (url && url.includes("/__logbubble/")) return;
       const ms = Date.now() - start;
       const message = `[NET] ${method} ${url} ${xhr.status} ${ms}ms`;
       logFn(message);

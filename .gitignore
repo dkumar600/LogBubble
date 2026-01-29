@@ -6,6 +6,10 @@ package-lock.json
 dist/
 *.tsbuildinfo
 
+# LogBubble log files (dev-mode only)
+.logs/
+*.ndjson
+
 # Environment variables
 .env
 .env.local
@@ -34,4 +38,11 @@ coverage/
 # Misc
 .cache/
 *.tmp
+# Documentation and legacy files
+*.md
+!README.md
+!CHANGELOG.md
+ui/logUI.old.ts
 *.temp
+test-live.html
+test-performance.html

@@ -44,6 +44,42 @@ import "logbubble";
 
 The floating bubble will appear in the top-right corner of your app.
 
+## Vite Plugin Integration
+
+LogBubble provides a Vite plugin for easy integration during development. This automatically injects LogBubble into your app for local debugging.
+
+### Setup
+
+1. Install LogBubble (if not already):
+
+```bash
+npm install logbubble
+```
+
+2. Add the plugin to your `vite.config.js` or `vite.config.ts`:
+
+```javascript
+// vite.config.js
+import { logbubbleVitePlugin } from "logbubble/vite-logbubble-plugin";
+
+export default {
+  plugins: [
+    logbubbleVitePlugin(),
+    // ...other plugins
+  ],
+};
+```
+
+3. Start your Vite dev server:
+
+```bash
+npm run dev
+```
+
+The LogBubble UI will appear automatically in your app during development.
+
+**Note:** The plugin is intended for development only. For production builds, import LogBubble manually as shown above.
+
 ### Manual initialization
 
 If you want more control over when LogBubble initializes:
@@ -128,6 +164,8 @@ LogBubble automatically intercepts and logs:
 
 - **Bubble**: Click to toggle the log window
 - **Badge**: Shows unread log count (disappears when window is opened)
+- **Draggable Button**: Button is draggable in all four corners of thr screen
+- **Toggleable Filter**: Toggleable Buttons to filter between consoles and network logs
 - **Clear**: Remove all logs
 - **Copy**: Copy all logs to clipboard with timestamps
 

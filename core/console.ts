@@ -5,8 +5,17 @@ import { logStore } from "../ui/logStore";
 
 let isPatching = false;
 
+const CONSOLE_PATCH_FLAG = "__LOGBUBBLE_CONSOLE_PATCHED__";
+const CONSOLE_PATCH_PROP = "__logbubbleConsolePatched";
+
 export function patchConsole() {
   if (typeof window === "undefined" || typeof console === "undefined") return;
+
+  const g = globalThis as any;
+  if (g[CONSOLE_PATCH_FLAG]) return;
+  if ((console as any)[CONSOLE_PATCH_PROP]) return;
+  g[CONSOLE_PATCH_FLAG] = true;
+  (console as any)[CONSOLE_PATCH_PROP] = true;
 
   const originalLog = console.log;
   const originalWarn = console.warn;
@@ -18,8 +27,8 @@ export function patchConsole() {
     originalLog.apply(console, args);
     if (!isPatching) {
       isPatching = true;
-      const message = args.map((arg) => formatArg(arg)).join(" ");
-      logStore.addLog(`[LOG] ${message}`, "plugin");
+      const payload = args.length === 1 ? args[0] : args;
+      logStore.addLog(payload, "console");
       isPatching = false;
     }
   };
@@ -28,8 +37,8 @@ export function patchConsole() {
     originalWarn.apply(console, args);
     if (!isPatching) {
       isPatching = true;
-      const message = args.map((arg) => formatArg(arg)).join(" ");
-      logStore.addLog(`[WARN] ${message}`, "plugin");
+      const payload = args.length === 1 ? args[0] : args;
+      logStore.addLog(payload, "console");
       isPatching = false;
     }
   };
@@ -38,8 +47,8 @@ export function patchConsole() {
     originalError.apply(console, args);
     if (!isPatching) {
       isPatching = true;
-      const message = args.map((arg) => formatArg(arg)).join(" ");
-      logStore.addLog(`[ERROR] ${message}`, "plugin");
+      const payload = args.length === 1 ? args[0] : args;
+      logStore.addLog(payload, "console");
       isPatching = false;
     }
   };
@@ -48,8 +57,8 @@ export function patchConsole() {
     originalInfo.apply(console, args);
     if (!isPatching) {
       isPatching = true;
-      const message = args.map((arg) => formatArg(arg)).join(" ");
-      logStore.addLog(`[INFO] ${message}`, "plugin");
+      const payload = args.length === 1 ? args[0] : args;
+      logStore.addLog(payload, "console");
       isPatching = false;
     }
   };
@@ -58,8 +67,8 @@ export function patchConsole() {
     originalDebug.apply(console, args);
     if (!isPatching) {
       isPatching = true;
-      const message = args.map((arg) => formatArg(arg)).join(" ");
-      logStore.addLog(`[DEBUG] ${message}`, "plugin");
+      const payload = args.length === 1 ? args[0] : args;
+      logStore.addLog(payload, "console");
       isPatching = false;
     }
   };

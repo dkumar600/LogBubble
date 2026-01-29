@@ -1,5 +1,3 @@
-// init.ts
-// Entry point for web-only dev-network-logger
 import { patchFetch } from "./core/fetch";
 import { patchXHR } from "./core/xhr";
 import { patchDOM } from "./core/dom";
@@ -7,6 +5,8 @@ import { patchConsole } from "./core/console";
 import { logUI } from "./ui/logUI";
 
 let isInitialized = false;
+
+const GLOBAL_INIT_FLAG = "__LOGBUBBLE_INITIALIZED__";
 
 function isDev() {
   return (
@@ -17,6 +17,19 @@ function isDev() {
 }
 
 export function initNetworkLogger() {
+  {
+    const g = globalThis as any;
+    if (g[GLOBAL_INIT_FLAG]) {
+      console.warn("[LogBubble] Already initialized, skipping duplicate init");
+      return;
+    }
+    g[GLOBAL_INIT_FLAG] = true;
+
+    if (typeof window !== "undefined") {
+      (window as any)[GLOBAL_INIT_FLAG] = true;
+    }
+  }
+
   if (isInitialized) {
     console.warn("[LogBubble] Already initialized, skipping duplicate init");
     return;
@@ -24,18 +37,12 @@ export function initNetworkLogger() {
   isInitialized = true;
 
   logUI.init();
-  // Patch fetch/XHR/DOM/Console in dev mode
   patchFetch(() => {});
   patchXHR(() => {});
   patchDOM(() => {});
   patchConsole();
 }
-
-// Auto-init for browser
 if (typeof window !== "undefined") {
   (window as any).initNetworkLogger = initNetworkLogger;
-  // Optionally auto-init in dev
-  // if (isDev()) {
   initNetworkLogger();
-  // }
 }

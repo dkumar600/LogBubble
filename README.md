@@ -15,6 +15,10 @@ A lightweight, floating log viewer for monitoring network requests and console l
 📝 **Console Logging**: Captures `console.log`, `console.warn`, `console.error`, `console.info`, and `console.debug`  
 🔔 **Unread Badge**: Shows count of new logs since last view  
 📋 **Copy to Clipboard**: Export all logs with timestamps  
+🟢 **Draggable Bubble**: Move the log bubble to any corner of the screen  
+🟦 **Toggleable Filters**: Easily filter between console and network logs  
+🗂️ **Log Details Modal**: Click any log to open a modal with full details, timestamp, and a copy button for better readability  
+🛠️ **Built-in Vite Plugin**: Vite plugin included in this project for easy integration during development  
 🔄 **Auto-initialization**: Works out of the box with zero configuration  
 🎨 **Clean UI**: Modern, minimalist design with color-coded log types
 

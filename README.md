@@ -8,6 +8,10 @@ A lightweight, floating log viewer for monitoring network requests and console l
 
 [View on npm](https://www.npmjs.com/package/logbubble)
 
+## Demo Video
+
+[![Watch the demo](https://img.youtube.com/vi/pU-_eQViwQI/0.jpg)](https://youtu.be/pU-_eQViwQI)
+
 ## Features
 
 ✨ **Floating UI**: Non-intrusive bubble interface that stays accessible without blocking your app  

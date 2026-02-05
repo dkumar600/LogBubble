@@ -1,6 +1,6 @@
 {
   "name": "logbubble",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "LogBubble: Web floating logger for network and console logs",
   "main": "dist/init.js",
   "types": "dist/init.d.ts",

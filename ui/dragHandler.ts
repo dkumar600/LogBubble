@@ -15,8 +15,8 @@ export class DragHandler {
     private onSnapComplete?: () => void,
     private onClick?: () => void,
   ) {
-    this.buttonX = window.innerWidth - 58;
-    this.buttonY = 10;
+    this.buttonX = window.innerWidth - 72;
+    this.buttonY = 24;
     this.updateButtonPosition();
   }
 
@@ -120,7 +120,7 @@ export class DragHandler {
 
   private snapToCorner() {
     const buttonSize = 48;
-    const margin = 10;
+    const margin = 24;
     const centerX = this.buttonX + buttonSize / 2;
     const centerY = this.buttonY + buttonSize / 2;
 

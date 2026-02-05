@@ -68,11 +68,11 @@ npm install logbubble
 
 ```javascript
 // vite.config.js
-import { logbubbleVitePlugin } from "logbubble/vite-logbubble-plugin";
+import logBubblePlugin from "logbubble/vite-logbubble-plugin";
 
 export default {
   plugins: [
-    logbubbleVitePlugin(),
+    logBubblePlugin(),
     // ...other plugins
   ],
 };
